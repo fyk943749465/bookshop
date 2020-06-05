@@ -69,20 +69,22 @@ public class RepositoryTest extends BaseTest {
 		
 //		bookRepository.updateBooks("战争与和平", 1L);
 		
-		Specification<Book> specification = new Specification<Book>() {
-			@Override
-			public Predicate toPredicate(Root<Book> root, CriteriaQuery<?> query, CriteriaBuilder criteriaBuilder) {
-				// 1. 组合模式，自身即使容器又是实体
-				// 2. 可以根据前台传过来的参赛是否为空，来决定是否生成查询条件，达到动态查询的目的
-				Predicate p1 = criteriaBuilder.equal(root.get("name"), "战争与和平");
-				Predicate p2 = criteriaBuilder.equal(root.get("category").get("name"), "世界名著");
-				Predicate p3 = criteriaBuilder.and(p1, p2);
-				// 指定连接方式 ，如果不指定，jpa会自己生成
-				root.fetch("category", JoinType.LEFT);
-				return p3;
-			}
-		};
+//		Specification<Book> specification = new Specification<Book>() {
+//			@Override
+//			public Predicate toPredicate(Root<Book> root, CriteriaQuery<?> query, CriteriaBuilder criteriaBuilder) {
+//				// 1. 组合模式，自身即使容器又是实体
+//				// 2. 可以根据前台传过来的参赛是否为空，来决定是否生成查询条件，达到动态查询的目的
+//				Predicate p1 = criteriaBuilder.equal(root.get("name"), "战争与和平");
+//				Predicate p2 = criteriaBuilder.equal(root.get("category").get("name"), "世界名著");
+//				Predicate p3 = criteriaBuilder.and(p1, p2);
+//				// 指定连接方式 ，如果不指定，jpa会自己生成
+//				root.fetch("category", JoinType.LEFT);
+//				return p3;
+//			}
+//		};
+//		
+//		bookRepository.findOne(specification);
 		
-		bookRepository.findOne(specification);
+		bookRepository.save(new Book());
 	}
 }
