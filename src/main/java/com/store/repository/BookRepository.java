@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Modifying;
@@ -18,7 +19,8 @@ public interface BookRepository extends JpaRepository<Book, Long>, JpaSpecificat
 	// JpaRepository 最长继承的一个接口。 getOne 方法
 	// JpaSpecificationExecutor 该接口是生成动态查询的接口，上面的都是静态查询接口，所以，一般一个Repository要继承静态查询和动态查询接口
 	// 静态查询
-	List<Book> findByName(String name);
+	@EntityGraph(attributePaths = {"category"})
+	Book findByName(String name);
 	// 静态查询
 	List<Book> findByNameAndCategoryName(String bookName, String categoryName);
 	// 静态查询，根据属性来查询
