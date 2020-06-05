@@ -10,11 +10,7 @@ import javax.persistence.OneToOne;
  *
  */
 @Entity
-public class AuthorInfo {
-
-	@Id
-	@GeneratedValue
-	private Long id;
+public class AuthorInfo extends DomainImpl{
 	
 	private String school;
 	

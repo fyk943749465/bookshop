@@ -3,6 +3,7 @@ package com.store.domain;
 import java.util.Date;
 
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.Temporal;
@@ -12,7 +13,7 @@ import javax.persistence.TemporalType;
 public class DomainImpl {
 
 	@Id // primary key
-	@GeneratedValue // primary key generation's strategy
+	@GeneratedValue(strategy = GenerationType.IDENTITY) // primary key generation's strategy
 	private Long id;
 	
 	@Temporal(TemporalType.TIMESTAMP)
